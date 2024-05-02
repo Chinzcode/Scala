@@ -40,7 +40,7 @@ object Recursion {
     }
 
     //last expression is the final thing
-    if (n <= 0) false //don't support negative numbbers
+    if (n <= 0) false //don't support negative numbers
     else if (n == 1) false // 1 is not a prime (not a composed number)
     else testDivisors(2)
   }
@@ -66,6 +66,6 @@ object Recursion {
     println(sum(10))
     printN("Scala is awesome", 5)
     println(concatenateN("Scala", 3)) //"ScalaScalaScala"
-    println(fibonacci(2)) //13
+    println(fibonacci(6)) //13
   }
 }
