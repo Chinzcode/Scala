@@ -1,0 +1,52 @@
+package com.rockthejvm.part2oop
+
+object AbstractDataTypes {
+
+  //abstract classes
+  abstract class VideoGame {
+    //fields or methods without impl = abstract
+    val gameType: String
+    def play(): Unit
+
+    //can provide "normal" fields or methods
+    def runningPlatform: String = "PS5"
+  }
+
+  //cannot be instantiated
+  //val videoGame: VideoGame = new VideoGame // - cannot instantiate VideoGame on its own
+  //derived classes myst be either A) abstract or B) with an impl for gameType
+  class Shooter extends VideoGame {
+    override val gameType: String = "FPS"
+    override def play(): Unit = println("fire!")
+  }
+
+  //traits
+  trait ThirdPerson {
+    def showPerspective(game: VideoGame): Unit
+  }
+
+  //traits can extend other traits
+  trait OpenWorld extends ThirdPerson {
+    override def showPerspective(game: VideoGame): Unit =
+      println("I see myself from the back and also see an open world.")
+  }
+
+  trait StoryLine {
+    def mainCharacter: String
+  }
+
+  //abstract classes vs traits
+  //a class can extend ONE class, but multiple traits
+
+  class MassEffect extends VideoGame with OpenWorld with StoryLine {
+    //gameType, play, mainCharacter
+    override val gameType: String = "open-world story"
+    override def play(): Unit = println("saving the galaxy")
+    override def mainCharacter: String = "commander Shepard"
+  }
+
+  def main(args: Array[String]): Unit = {
+    val cs = new Shooter
+    println(cs.runningPlatform)
+  }
+}
